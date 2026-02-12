@@ -1,0 +1,60 @@
+Comandos usados (Laboratorio 2) 
+
+============================================
+
+Comandos usados practica 1
+
+============================================
+
+date
+sudo apt update && sudo apt upgrade -y
+cat /etc/apt/sources.list
+ls /etc/apt/sources.list.d/
+apt search bashtop
+sudo apt install bashtop -y
+bashtop
+sudo apt remove --purge bashtop -y
+sudo apt autoremove -y
+date
+
+============================================
+
+Comandos usados practica 2
+
+============================================
+
+date
+sudo apt update && sudo apt install at -y
+sudo systemctl enable --now atd
+sudo crontab -e
+# 0  23 * * * apt update && apt upgrade -y
+# 0 3 * * 0 /sbin/reboot
+sudo crontab -l
+touch /tmp/evidencia_practica2.txt
+ls /tmp
+echo "rm -rf /tmp/*" | sudo at now + 1 minute
+atq
+ls /tmp
+date
+
+============================================
+
+Comandos usados practica 3
+
+============================================
+
+date
+lsblk
+sudo mkfs.ext4 /dev/sdb
+mkdir ~/Desktop/Nuevo_Disco
+sudo mount /dev/sdb ~/Desktop/Nuevo_Disco
+cd ~/Escritorio/Nuevo_Disco
+sudo touch AdrianAlcantara.txt
+ls -l
+cd ~
+sudo umount ~/Desktop/Nuevo_Disco
+sudo mount /dev/sdb /mnt
+ls /mnt
+date
+
+============================================
