@@ -1,0 +1,64 @@
+============================================
+
+Comandos usados practica 1
+
+============================================
+
+sudo nano /etc/default/grub
+sudo update-grub
+grep "GRUB_TIMEOUT" /etc/default/grub
+sudo reboot
+rw init=/bin/bash
+passwd root
+exec /sbin/init
+su - root
+whoami
+exit
+
+============================================
+
+Comandos usados practica 2
+
+============================================
+
+nano backup.sh
+
+#!/bin/bash
+FECHA=$(date +"%d-%m-%Y:%H:%M")
+tar -czf ~/Escritorio/backup_$FECHA.tar.gz /home/$USER
+
+
+nano red.sh
+
+#!/bin/bash
+echo "Ingrese el nombre para el archivo:"
+read NOMBRE
+ifconfig > ~/Escritorio/$NOMBRE.txt
+
+
+chmod +x backup.sh red.sh
+./backup.sh
+ls -lh ~/Escritorio/
+./red.sh
+cat ~/Escritorio/*.txt
+
+============================================
+
+Comandos usados practica 3
+
+============================================
+
+ip a
+sudo apt update && sudo apt install openssh-server -y
+sudo systemctl enable --now ssh
+systemctl status ssh
+
+
+
+ping 192.168.X.X
+ssh-keygen -t rsa
+type %USERPROFILE%\.ssh\id_rsa.pub | ssh huascar@192.168.X.X "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+ssh huascar@192.168.X.X
+whoami
+hostname
+exit
