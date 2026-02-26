@@ -1,0 +1,35 @@
+Comandos usados practica 1
+
+============================================
+
+sudo apt update && sudo apt install apache2 -y
+
+sudo mkdir -p /var/www/html/sitio80
+sudo mkdir -p /var/www/html/sitio8080
+
+echo "<h1>Hola Mundo</h1>" | sudo tee /var/www/html/sitio80/index.html
+echo "<h1>Huascar - [20251401] - Sistemas Operativos III</h1>" | sudo tee /var/www/html/sitio8080/index.html
+
+sudo sed -i '/Listen 80/a Listen 8080' /etc/apache2/ports.conf
+
+sudo bash -c 'cat <<EOF > /etc/apache2/sites-available/sitio80.conf
+<VirtualHost *:80>
+    DocumentRoot /var/www/html/sitio80
+</VirtualHost>
+EOF'
+
+sudo bash -c 'cat <<EOF > /etc/apache2/sites-available/sitio8080.conf
+<VirtualHost *:8080>
+    DocumentRoot /var/www/html/sitio8080
+</VirtualHost>
+EOF'
+
+sudo a2ensite sitio80.conf sitio8080.conf
+sudo a2dissite 000-default.conf
+sudo systemctl restart apache2
+
+sudo apache2ctl configtest
+ss -tuln | grep -E ':80|:8080'
+systemctl status apache2
+curl http://localhost
+curl http://localhost:8080
